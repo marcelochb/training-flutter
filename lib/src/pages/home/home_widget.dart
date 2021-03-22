@@ -4,6 +4,7 @@ import 'package:training_flutter/components/atoms/button/button_widget.dart';
 import 'package:training_flutter/components/atoms/counter/counter_widget.dart';
 import 'package:training_flutter/components/atoms/title/title_widget.dart';
 import 'package:training_flutter/components/molecules/container/container_widget.dart';
+import 'package:training_flutter/src/pages/home/home_controller.dart';
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -15,14 +16,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
+  final HomeController homeController = HomeController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,14 +35,12 @@ class _MyHomePageState extends State<MyHomePage> {
             TitleWidget(
               texto: 'agora vai',
             ),
-            CounterWidget(
-              counter: '$_counter',
-            )
+            CounterWidget()
           ],
         ),
       ),
       floatingActionButton: ButtonWidget(
-        increment: _incrementCounter,
+        increment: HomeController.instance.incrementCounter,
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
